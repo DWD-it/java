@@ -30,7 +30,6 @@ const state = {
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavigation();
-    initI18n();
     renderHomeWeeks();
     renderSidebarWeeks();
     renderQuizGrid();
@@ -83,63 +82,7 @@ const translations = {
     "هذا الموقع لايتبع جامعه برج العرب التكنولوجيا بشكل رسمي انما هوه عمل تطويعي تم بناء هذا الموقع بواسطه عبدالله محمد علي ❤️": "This site is not officially affiliated with Borg El Arab Technological University. It is a volunteer work built by Abdallah Mohamed Ali ❤️"
 };
 
-let currentLang = localStorage.getItem('javaStudyLang') || 'ar';
-
-function initI18n() {
-    const langBtn = document.getElementById('lang-toggle');
-    if (langBtn) {
-        langBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
-        langBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            localStorage.setItem('javaStudyLang', currentLang);
-            document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            langBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
-            applyTranslations();
-        });
-    }
-    document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-    if (currentLang === 'en') applyTranslations();
-}
-
-function applyTranslations() {
-    const isEn = currentLang === 'en';
-    const textNodes = getTextNodesIn(document.body);
-    
-    // Simple replace for UI elements (we use a saved original text attribute)
-    textNodes.forEach(node => {
-        if (!node.parentElement) return;
-        if (node.parentElement.closest('.code-window') || node.parentElement.closest('.week-content') || node.parentElement.closest('.quiz-body')) return; // Skip content areas
-        
-        let original = node.parentElement.getAttribute('data-ar-text');
-        if (!original) {
-            original = node.textContent.trim();
-            if (original && translations[original]) {
-                node.parentElement.setAttribute('data-ar-text', original);
-            }
-        }
-        
-        if (original && translations[original]) {
-            node.textContent = isEn ? translations[original] : original;
-        }
-    });
-}
-
-function getTextNodesIn(el) {
-    var textNodes = [], nonWhitespaceMatcher = /\S/;
-    function getTextNodes(node) {
-        if (node.nodeType == 3) {
-            if (nonWhitespaceMatcher.test(node.nodeValue)) {
-                textNodes.push(node);
-            }
-        } else {
-            for (var i = 0, len = node.childNodes.length; i < len; ++i) {
-                getTextNodes(node.childNodes[i]);
-            }
-        }
-    }
-    getTextNodes(el);
-    return textNodes;
-}
+// Translation logic removed as per user request to fix direction bugs
 
 // Terms Highlight
 function highlightTerms(html) {

@@ -1041,6 +1041,7 @@ body {
     -webkit-overflow-scrolling: touch;
     border: 1px solid rgba(108, 99, 255, 0.15);
     position: relative;
+    width: 100%;
     max-width: 100%;
 }
 
@@ -1823,7 +1824,7 @@ body {
     .hero-actions { justify-content: center; }
     .hero-visual { order: -1; }
     
-    .code-window { max-width: 500px; margin: 0 auto; }
+    .code-window { max-width: 100%; margin: 0 auto; }
     
     .quick-stats { grid-template-columns: repeat(2, 1fr); }
     
