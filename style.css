@@ -146,6 +146,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -157,7 +162,6 @@ body {
     color: var(--text-primary);
     line-height: 1.7;
     min-height: 100vh;
-    overflow-x: hidden;
     transition: background var(--transition-base), color var(--transition-base);
 }
 
@@ -941,6 +945,8 @@ body {
 /* Week Content Area */
 .week-content {
     padding: var(--space-8);
+    min-width: 0; /* Fixes grid blowout from long code blocks */
+    max-width: 100%;
 }
 
 .week-placeholder {
@@ -1032,8 +1038,10 @@ body {
     padding: var(--space-5);
     margin: var(--space-4) 0;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border: 1px solid rgba(108, 99, 255, 0.15);
     position: relative;
+    max-width: 100%;
 }
 
 .code-block code {
@@ -1095,7 +1103,6 @@ body {
     line-height: 1.8;
 }
 
-/* Tables in content */
 .content-table {
     width: 100%;
     border-collapse: collapse;
@@ -1103,6 +1110,9 @@ body {
     font-size: var(--text-sm);
     direction: ltr;
     text-align: left;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .content-table th,
