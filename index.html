@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منصة تعليمية شاملة لمادة برمجة الجافا - جامعة برج العرب التكنولوجية - سنة تانية IT">
+    <title>Java Study Hub | جامعة برج العرب التكنولوجية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" id="nav-brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#brandGrad)"/>
+                        <text x="8" y="28" font-family="JetBrains Mono" font-weight="800" font-size="20" fill="white">J</text>
+                        <defs><linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#FF6B35"/><stop offset="1" stop-color="#F72585"/></linearGradient></defs>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">Java Study Hub</span>
+                    <span class="brand-subtitle">برج العرب التكنولوجية</span>
+                </div>
+            </div>
+            <div class="nav-center" id="nav-center">
+                <button class="nav-link active" data-section="home" id="nav-home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>الرئيسية</span>
+                </button>
+                <button class="nav-link" data-section="weeks" id="nav-weeks">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span>المحاضرات</span>
+                </button>
+                <button class="nav-link" data-section="quiz" id="nav-quiz">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span>الاختبارات</span>
+                </button>
+                <button class="nav-link" data-section="stats" id="nav-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <span>الإحصائيات</span>
+                </button>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="theme-toggle" title="تغيير الثيم">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <button class="lang-toggle" id="lang-toggle" title="تغيير اللغة / Change Language" style="font-weight: 700; background: transparent; border: 1px solid var(--border-secondary); color: var(--text-primary); border-radius: var(--radius-sm); padding: 4px 8px; cursor: pointer;">
+                    EN
+                </button>
+                <button id="desktop-sidebar-open" class="btn btn-ghost" style="display:none; padding: 4px 8px;" title="إظهار القائمة">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-nav-link active" data-section="home">🏠 الرئيسية</button>
+        <button class="mobile-nav-link" data-section="weeks">📚 المحاضرات</button>
+        <button class="mobile-nav-link" data-section="quiz">❓ الاختبارات</button>
+        <button class="mobile-nav-link" data-section="stats">📊 الإحصائيات</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        
+        <!-- HOME SECTION -->
+        <section class="section section-home active" id="section-home">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        جامعة برج العرب التكنولوجية • سنة تانية IT
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">تعلّم</span>
+                        <span class="title-line gradient-text">Java Programming</span>
+                        <span class="title-line">بأسلوب ممتع 🚀</span>
+                    </h1>
+                    <p class="hero-desc">
+                        منصة تعليمية شاملة تشرحلك منهج الجافا كامل من المحاضرة الأولى لحد الريفيجن.
+                        شروحات بالعربي والانجليزي، أمثلة عملية، واختبارات تفاعلية على كل أسبوع.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" id="start-learning-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            ابدأ التعلم
+                        </button>
+                        <button class="btn btn-ghost btn-lg" id="start-quiz-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            اختبر نفسك
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="code-filename">HelloWorld.java</span>
+                        </div>
+                        <pre class="code-body"><code><span class="kw">public class</span> <span class="cls">HelloWorld</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"مرحباً بك في Java! 🎓"</span>);
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Welcome to Java!"</span>);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card" id="stat-weeks-count">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">أسبوع دراسي</div>
+                </div>
+                <div class="stat-card" id="stat-lectures-count">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-value">25</div>
+                    <div class="stat-label">ملف تعليمي</div>
+                </div>
+                <div class="stat-card" id="stat-questions-count">
+                    <div class="stat-icon">❓</div>
+                    <div class="stat-value">250+</div>
+                    <div class="stat-label">سؤال اختبار</div>
+                </div>
+                <div class="stat-card" id="stat-topics-count">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-value">40+</div>
+                    <div class="stat-label">موضوع مشروح</div>
+                </div>
+            </div>
+
+            <!-- Weeks Preview Grid -->
+            <div class="section-header">
+                <h2>📖 نظرة عامة على المنهج</h2>
+                <p>اضغط على أي أسبوع للبدء في المذاكرة</p>
+            </div>
+            <div class="weeks-grid" id="home-weeks-grid">
+                <!-- Will be filled by JS -->
+            </div>
+        </section>
+
+        <!-- WEEKS SECTION (Lecture Content) -->
+        <section class="section section-weeks" id="section-weeks">
+            <!-- Week Navigation Sidebar -->
+            <div class="weeks-layout">
+                <aside class="weeks-sidebar" id="weeks-sidebar">
+                    <div class="sidebar-header" style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3>📚 الأسابيع</h3>
+                        <button id="desktop-sidebar-close" class="btn btn-ghost btn-sm" style="padding:4px;">✕</button>
+                    </div>
+                    <div class="sidebar-list" id="sidebar-list">
+                        <!-- Will be filled by JS -->
+                    </div>
+                </aside>
+                <div class="week-content" id="week-content">
+                    <div class="week-placeholder">
+                        <div class="placeholder-icon">👈</div>
+                        <h3>اختر أسبوع من القائمة</h3>
+                        <p>اضغط على أي أسبوع عشان تشوف المحتوى والشرح</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section class="section section-quiz" id="section-quiz">
+            <div class="quiz-container" id="quiz-container">
+                <!-- Quiz Selection -->
+                <div class="quiz-selection" id="quiz-selection">
+                    <div class="section-header">
+                        <h2>🧪 اختبر نفسك</h2>
+                        <p>اختر أسبوع عشان تبدأ اختبار عليه - كل اختبار فيه 20 سؤال MCQ و 5 أسئلة مقالية</p>
+                    </div>
+                    <div class="quiz-grid" id="quiz-grid">
+                        <!-- Will be filled by JS -->
+                    </div>
+                </div>
+                <!-- Active Quiz -->
+                <div class="quiz-active hidden" id="quiz-active">
+                    <div class="quiz-header" id="quiz-header">
+                        <div class="quiz-info">
+                            <h3 id="quiz-title"></h3>
+                            <div class="quiz-progress">
+                                <span id="quiz-progress-text">السؤال 1 من 25</span>
+                                <div class="progress-bar"><div class="progress-fill" id="quiz-progress-fill"></div></div>
+                            </div>
+                        </div>
+                        <div class="quiz-timer" id="quiz-timer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <span id="quiz-timer-text">00:00</span>
+                        </div>
+                        <button class="btn btn-ghost btn-sm" id="quiz-exit-btn">✕ خروج</button>
+                    </div>
+                    <div class="quiz-body" id="quiz-body">
+                        <!-- Questions rendered here -->
+                    </div>
+                    <div class="quiz-footer" id="quiz-footer">
+                        <button class="btn btn-ghost" id="quiz-prev-btn">← السابق</button>
+                        <button class="btn btn-primary" id="quiz-next-btn">التالي →</button>
+                        <button class="btn btn-success hidden" id="quiz-submit-btn">✅ إرسال الاختبار</button>
+                    </div>
+                </div>
+                <!-- Quiz Results -->
+                <div class="quiz-results hidden" id="quiz-results">
+                    <!-- Results rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="section section-stats" id="section-stats">
+            <div class="section-header">
+                <h2>📊 لوحة الإحصائيات</h2>
+                <p>تتبع أداءك وتقدمك في المذاكرة</p>
+            </div>
+            <div class="stats-dashboard" id="stats-dashboard">
+                <div class="stats-overview">
+                    <div class="overview-card" id="overview-total">
+                        <div class="overview-icon">🏆</div>
+                        <div class="overview-info">
+                            <span class="overview-value" id="total-quizzes">0</span>
+                            <span class="overview-label">اختبار مكتمل</span>
+                        </div>
+                    </div>
+                    <div class="overview-card" id="overview-avg">
+                        <div class="overview-icon">📈</div>
+                        <div class="overview-info">
+                            <span class="overview-value" id="avg-score">0%</span>
+                            <span class="overview-label">متوسط الدرجات</span>
+                        </div>
+                    </div>
+                    <div class="overview-card" id="overview-best">
+                        <div class="overview-icon">⭐</div>
+                        <div class="overview-info">
+                            <span class="overview-value" id="best-score">0%</span>
+                            <span class="overview-label">أفضل درجة</span>
+                        </div>
+                    </div>
+                    <div class="overview-card" id="overview-streak">
+                        <div class="overview-icon">🔥</div>
+                        <div class="overview-info">
+                            <span class="overview-value" id="study-streak">0</span>
+                            <span class="overview-label">يوم متتالي</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stats-chart-card" id="stats-by-week">
+                        <h4>📊 الدرجات لكل أسبوع</h4>
+                        <div class="chart-container" id="week-chart">
+                            <!-- Chart bars rendered by JS -->
+                        </div>
+                    </div>
+                    <div class="stats-chart-card" id="stats-history">
+                        <h4>📝 سجل الاختبارات</h4>
+                        <div class="history-list" id="history-list">
+                            <div class="empty-state">
+                                <span>🎯</span>
+                                <p>لسه ماعملتش أي اختبار. ابدأ دلوقتي!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-actions">
+                    <button class="btn btn-ghost" id="clear-stats-btn">🗑️ مسح جميع البيانات</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>هذا الموقع لايتبع جامعه برج العرب التكنولوجيا بشكل رسمي انما هوه عمل تطويعي تم بناء هذا الموقع بواسطه عبدالله محمد علي ❤️</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
