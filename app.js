@@ -2,9 +2,7 @@
 // JAVA STUDY HUB - Main Application
 // ============================================
 
-const OC_API_KEY = "oc_44s74zky3_44s74zkyt_fa043cdbe1458385c40e64bef7d05c7085d7ecaada1e6a89";
-const OC_API_URL = "https://onecompiler.com/api/v1/run";
-
+// API keys removed, using Wandbox API
 // ============================================
 // STATE MANAGEMENT
 // ============================================
@@ -601,15 +599,19 @@ async function runCode(questionId) {
     resultDiv.innerHTML = renderCodeResult({ loading: true });
 
     try {
-        const response = await fetch(OC_API_URL + "?access_token=" + OC_API_KEY, {
+        let codeToRun = code;
+        codeToRun = codeToRun.replace(/public\s+class\s+([A-Za-z0-9_]+)/, "class $1");
+
+        const response = await fetch("https://wandbox.org/api/compile.json", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                language: 'java',
+                compiler: "openjdk-jdk-22+36",
+                code: codeToRun,
                 stdin: (q && q.expectedInput) ? q.expectedInput : '',
-                files: [{ name: 'Main.java', content: code }]
+                save: false
             })
         });
 
@@ -618,14 +620,13 @@ async function runCode(questionId) {
         let output = '';
         let error = '';
         
-        if (data.stderr && data.stderr.trim()) {
-            error = data.stderr.trim();
+        if (data.status === "1" || data.compiler_error || data.program_error) {
+            error = (data.compiler_error || "") + (data.program_error || "");
+            error = error.trim();
         }
-        if (data.stdout) {
-            output = data.stdout.trim();
-        }
-        if (data.exception) {
-            error = data.exception;
+        
+        if (data.program_output) {
+            output = data.program_output.trim();
         }
 
         // Find question to check expected output
