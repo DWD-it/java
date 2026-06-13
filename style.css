@@ -1854,6 +1854,12 @@ body {
     .stats-grid { grid-template-columns: 1fr; }
 }
 
+/* Force LTR for all code blocks to fix punctuation placement */
+.code-block, pre, code, .code-window {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
 @media (max-width: 768px) {
     :root {
         --text-5xl: 2.25rem;
@@ -1868,8 +1874,17 @@ body {
         display: flex;
     }
     
+    .brand-title {
+        font-size: 1.1rem;
+    }
+    
+    .brand-subtitle {
+        font-size: 0.65rem;
+    }
+    
     .hero-title {
         font-size: var(--text-3xl);
+        line-height: 1.4;
     }
     
     .quick-stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
