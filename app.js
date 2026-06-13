@@ -270,13 +270,25 @@ function openWeekFromHome(weekId) {
 // WEEKS SIDEBAR + CONTENT
 // ============================================
 function renderSidebarWeeks() {
-    const list = document.getElementById('sidebar-list');
-    list.innerHTML = WEEKS_DATA.map(w => `
-        <button class="sidebar-item" data-week="${w.id}" onclick="selectWeek(${w.id})">
+    const html = WEEKS_DATA.map(w => `
+        <button class="sidebar-item" data-week="${w.id}" onclick="openWeekFromMobile(${w.id})">
             <span class="sidebar-item-num">${w.num}</span>
             <span>${w.title}</span>
         </button>
     `).join('');
+    
+    document.getElementById('sidebar-list').innerHTML = html;
+    
+    const mobileList = document.getElementById('mobile-sidebar-list');
+    if (mobileList) {
+        mobileList.innerHTML = html;
+    }
+}
+
+function openWeekFromMobile(weekId) {
+    navigateTo('weeks');
+    selectWeek(weekId);
+    closeMobileMenu();
 }
 
 function selectWeek(weekId) {
@@ -286,8 +298,7 @@ function selectWeek(weekId) {
 
     // Update sidebar active
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-    const activeItem = document.querySelector(`.sidebar-item[data-week="${weekId}"]`);
-    if (activeItem) activeItem.classList.add('active');
+    document.querySelectorAll(`.sidebar-item[data-week="${weekId}"]`).forEach(el => el.classList.add('active'));
 
     // Render content
     const contentEl = document.getElementById('week-content');

@@ -67,12 +67,18 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu / Sidebar -->
     <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-nav-link active" data-section="home">🏠 الرئيسية</button>
-        <button class="mobile-nav-link" data-section="weeks">📚 المحاضرات</button>
-        <button class="mobile-nav-link" data-section="quiz">❓ الاختبارات</button>
-        <button class="mobile-nav-link" data-section="stats">📊 الإحصائيات</button>
+        <div style="flex: 1; overflow-y: auto;">
+            <div id="mobile-sidebar-list" class="sidebar-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        <div style="padding-top: var(--space-4); border-top: 1px solid var(--border-secondary); margin-top: auto;">
+            <button class="mobile-nav-link" data-section="home" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;">🏠 الرئيسية</button>
+            <button class="mobile-nav-link" data-section="quiz" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;">❓ الاختبارات</button>
+            <button class="mobile-nav-link" data-section="stats" style="width: 100%; justify-content: flex-start;">📊 الإحصائيات</button>
+        </div>
     </div>
 
     <!-- Main Content -->
