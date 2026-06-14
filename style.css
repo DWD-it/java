@@ -536,6 +536,11 @@ body {
     min-height: calc(100vh - 64px - 200px);
 }
 
+.hero-content, .hero-visual {
+    min-width: 0;
+    max-width: 100%;
+}
+
 .hero-badge {
     display: inline-flex;
     align-items: center;
