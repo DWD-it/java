@@ -130,6 +130,9 @@ function initNavigation() {
     });
     // Mobile menu toggle
     document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+    const closeMenuBtn = document.getElementById('close-mobile-menu');
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+    
     // Brand click
     document.getElementById('nav-brand').addEventListener('click', () => navigateTo('home'));
     // Hero buttons
