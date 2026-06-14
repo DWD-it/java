@@ -327,9 +327,9 @@ function startQuiz(weekId) {
 
     document.getElementById('quiz-title').textContent = `${week.num} - ${week.title}`;
     navigateTo('quiz');
-    document.getElementById('quiz-selection').style.display = 'none';
-    document.getElementById('quiz-active').style.display = 'block';
-    document.getElementById('quiz-results-view').style.display = 'none';
+    document.getElementById('quiz-selection').classList.add('hidden');
+    document.getElementById('quiz-results').classList.add('hidden');
+    document.getElementById('quiz-active').classList.remove('hidden');
     renderQuestion();
     startTimer();
 }

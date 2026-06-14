@@ -904,6 +904,11 @@ body {
     background: var(--bg-secondary);
     border-right: 1px solid var(--border-secondary);
     padding: var(--space-4);
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 64px);
+    position: sticky;
+    top: 64px;
     transition: all 0.3s ease;
 }
 
