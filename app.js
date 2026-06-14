@@ -326,7 +326,10 @@ function startQuiz(weekId) {
     };
 
     document.getElementById('quiz-title').textContent = `${week.num} - ${week.title}`;
-    showQuizUI();
+    navigateTo('quiz');
+    document.getElementById('quiz-selection').style.display = 'none';
+    document.getElementById('quiz-active').style.display = 'block';
+    document.getElementById('quiz-results-view').style.display = 'none';
     renderQuestion();
     startTimer();
 }
@@ -398,40 +401,79 @@ function renderQuestion() {
 
 function renderMCQ(container, q, idx) {
     const selected = state.quiz.answers[q.id];
+    const isAnswered = selected !== undefined;
+    const correctIdx = q.answer;
+    
     container.innerHTML = `
         <div class="quiz-question">
             <span class="question-badge mcq">MCQ</span>
             <div class="question-text">${q.q}</div>
             ${q.code ? `<div class="question-code"><code>${escapeHtml(q.code)}</code></div>` : ''}
             <div class="mcq-options">
-                ${q.options.map((opt, i) => `
-                    <div class="mcq-option ${selected === i ? 'selected' : ''}" onclick="selectMCQ('${q.id}', ${i})">
+                ${q.options.map((opt, i) => {
+                    let optClass = '';
+                    if (isAnswered) {
+                        if (i === correctIdx) optClass = 'correct';
+                        else if (i === selected) optClass = 'wrong';
+                        else optClass = 'disabled';
+                    } else if (selected === i) {
+                        optClass = 'selected';
+                    }
+                    const clickAttr = isAnswered ? '' : `onclick="selectMCQ('${q.id}', ${i})"`;
+                    return `
+                    <div class="mcq-option ${optClass}" ${clickAttr} style="${isAnswered ? 'cursor:default;' : ''}">
                         <span class="option-letter">${String.fromCharCode(65 + i)}</span>
                         <span>${escapeHtml(opt)}</span>
-                    </div>
-                `).join('')}
+                    </div>`;
+                }).join('')}
             </div>
+            ${isAnswered ? `
+            <div class="info-box ${selected === correctIdx ? 'success' : 'danger'}" style="margin-top:var(--space-4);">
+                <h5>${selected === correctIdx ? '✅ إجابة صحيحة! ممتاز!' : '❌ إجابة خاطئة!'}</h5>
+                <p>الإجابة الصحيحة هي: <strong>${escapeHtml(q.options[correctIdx])}</strong></p>
+                ${q.hint ? `<p style="margin-top:5px;font-size:0.9em;">💡 تلميح: ${q.hint}</p>` : ''}
+            </div>
+            ` : ''}
         </div>
     `;
 }
 
 function renderTrueFalse(container, q, idx) {
     const selected = state.quiz.answers[q.id];
+    const isAnswered = selected !== undefined;
+    const correctIdx = q.answer;
+    
+    const getOptClass = (i) => {
+        if (isAnswered) {
+            if (i === correctIdx) return 'correct';
+            if (i === selected) return 'wrong';
+            return 'disabled';
+        }
+        return selected === i ? 'selected' : '';
+    };
+
     container.innerHTML = `
         <div class="quiz-question">
             <span class="question-badge mcq">صح / غلط - True or False</span>
             <div class="question-text">${q.q}</div>
             ${q.code ? `<div class="question-code"><code>${escapeHtml(q.code)}</code></div>` : ''}
             <div class="mcq-options">
-                <div class="mcq-option ${selected === 0 ? 'selected' : ''}" onclick="selectMCQ('${q.id}', 0)">
+                <div class="mcq-option ${getOptClass(0)}" ${isAnswered ? '' : `onclick="selectMCQ('${q.id}', 0)"`} style="${isAnswered ? 'cursor:default;' : ''}">
                     <span class="option-letter">✅</span>
                     <span>True (صح)</span>
                 </div>
-                <div class="mcq-option ${selected === 1 ? 'selected' : ''}" onclick="selectMCQ('${q.id}', 1)">
+                <div class="mcq-option ${getOptClass(1)}" ${isAnswered ? '' : `onclick="selectMCQ('${q.id}', 1)"`} style="${isAnswered ? 'cursor:default;' : ''}">
                     <span class="option-letter">❌</span>
                     <span>False (غلط)</span>
                 </div>
             </div>
+            ${isAnswered ? `
+            <div class="info-box ${selected === correctIdx ? 'success' : 'danger'}" style="margin-top:var(--space-4);">
+                <h5>${selected === correctIdx ? '✅ إجابة صحيحة! ممتاز!' : '❌ إجابة خاطئة!'}</h5>
+                <p>الإجابة الصحيحة هي: <strong>${correctIdx === 0 ? 'True (صح)' : 'False (غلط)'}</strong></p>
+                ${q.hint ? `<p style="margin-top:5px;font-size:0.9em;">💡 تلميح: ${q.hint}</p>` : ''}
+            </div>
+            ` : ''}
         </div>
     `;
 }
